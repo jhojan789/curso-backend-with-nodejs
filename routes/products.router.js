@@ -17,15 +17,17 @@ router.get('/',async (req,res)=>{
 });
 
 
-router.get('/:id',async (req,res)=>{
-  const { id } = req.params;
-  const product = await service.findOne(id);
-  if(product)
-    res.status(200).json(product);
-  else
-    res.status(404).json({
-      message: '404: NOT FOUND'
-    })
+router.get('/:id',async (req,res,next)=>{
+  try {
+    const total = getTotal();
+    const { id } = req.params;
+    const product = await service.findOne(id);
+    res.json(product);
+
+  } catch (error) {
+    next(error);
+  }
+
   });
 
 

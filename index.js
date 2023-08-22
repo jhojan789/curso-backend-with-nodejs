@@ -1,5 +1,6 @@
 const express = require('express');
 const routerAPI = require('./routes');
+const {logErrors,errorHandler }  = require( './mildwares/error.handler');
 
 const app = express();
 const port = 3000;
@@ -13,6 +14,8 @@ app.get('/', function (req, res) {
 });
 
 routerAPI(app);
+app.use(logErrors);
+app.use(errorHandler);
 
 app.listen(port,()=>{
   console.log('Listen in the port: ' + port);
