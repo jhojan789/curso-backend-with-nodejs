@@ -19,7 +19,7 @@ router.get('/',async (req,res)=>{
 
 router.get('/:id',async (req,res,next)=>{
   try {
-    const total = getTotal();
+
     const { id } = req.params;
     const product = await service.findOne(id);
     res.json(product);
@@ -39,7 +39,7 @@ router.get('/:id',async (req,res,next)=>{
 
   );
 
-  router.patch('/:id',async (req,res)=>{
+  router.patch('/:id',async (req,res,next)=>{
      try {
         const {id} = req.params;
         const body = req.body;
@@ -48,9 +48,7 @@ router.get('/:id',async (req,res,next)=>{
         res.json(product);
 
      } catch (error) {
-        res.status(404).json({
-          message: error.message
-        });
+       next(error);
      }
 
   });
