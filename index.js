@@ -4,13 +4,13 @@ const {logErrors,errorHandler,boomErrorHandler }  = require( './mildwares/error.
 const cors = require('cors');
 
 const app = express();
-const app2 = express();
+// const app2 = express();
 const port = 3000;
-const port2 = 8080;
+// const port2 = 8080;
 
-app2.get('/', (req, res) => {
-  res.sendFile(__dirname + '/frontend.html');
-});
+// app2.get('/', (req, res) => {
+//   res.sendFile(__dirname + '/frontend.html');
+// });
 
 
 //this line allows to send body json in the post method
@@ -42,6 +42,6 @@ app.listen(port,()=>{
   console.log('Listen in the port: ' + port);
 });
 
-app2.listen(port2, () => {
-  console.log(`Server is running at http://localhost:${port2}`);
-});
+// app2.listen(port2, () => {
+//   console.log(`Server is running at http://localhost:${port2}`);
+// });
