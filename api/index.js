@@ -5,7 +5,7 @@ const cors = require('cors');
 
 const app = express();
 // const app2 = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 // const port2 = 8080;
 
 // app2.get('/', (req, res) => {
@@ -18,7 +18,7 @@ app.use(express.json());
 const whiteList = ['http://localhost:8080','http://mydomain.com'];
 const options = {
   origin: (origin,callback)=>{
-    if(whiteList.includes(origin)){
+    if(whiteList.includes(origin) || !origin){
       callback(null,true);
     }else{
       callback(new Error('Origin not allowed'));
@@ -28,7 +28,7 @@ const options = {
 
 app.use(cors(options));
 
-app.get('/', function (req, res) {
+app.get('/api', function (req, res) {
   res.send('Main');
 
 });
